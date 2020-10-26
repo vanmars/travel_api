@@ -10,6 +10,19 @@ class Review < ApplicationRecord
 
   scope :search, -> (city_name, country_name) { where("city ilike ? AND country ilike ?", "%#{city_name}%", "%#{country_name}%") }
 
+  scope :most_reviewed, -> { select("reviews.city, reviews.country, count(*)").
+    group("reviews.city, reviews.country").
+    order("count(*) DESC").
+    limit(2)
+  }
+
+  scope :highest_rated, -> { group("reviews.rating, reviews.id").
+    order("reviews.rating DESC").
+    limit(2)
+}
+
+  # Review.select("reviews.city, reviews.country, count(*)").group("reviews.city, reviews.country").order("count(*) DESC")
+
   # Callback
   before_save(:titleize)
 
@@ -19,3 +32,9 @@ class Review < ApplicationRecord
       self.country = self.country.titleize
     end
 end
+
+# select reviews.city from reviews
+# group by cities
+# group by countries 
+# order by count(*) DESC
+# LIMIT 1;

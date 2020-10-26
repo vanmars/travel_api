@@ -11,6 +11,16 @@ class ReviewsController < ApplicationController
     json_response(@reviews)
   end
 
+  def most_popular
+    @locations = Review.most_reviewed
+    json_response(@locations)
+  end
+
+  def highest_rated
+    @locations = Review.highest_rated
+    json_response(@locations)
+  end
+
   def create
     @review = Review.create!(review_params)
     json_response(@review, :created)
