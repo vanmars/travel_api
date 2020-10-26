@@ -21,6 +21,8 @@ class Review < ApplicationRecord
     limit(2)
 }
 
+  scope :random_location, -> (city_array) { where("city ilike ?", "#{city_array.sample}") }
+
   # Review.select("reviews.city, reviews.country, count(*)").group("reviews.city, reviews.country").order("count(*) DESC")
 
   # Callback

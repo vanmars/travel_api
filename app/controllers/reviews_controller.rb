@@ -56,6 +56,16 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def random
+    # Loop through Review.all and grab the city value and push it to city_arrays
+    city_array = []
+    Review.all.each do | obj|
+      city_array.push(obj[:city])
+    end
+    @reviews = Review.random_location(city_array)
+    json_response(@reviews)
+  end
+
   private
   def review_params
     params.permit(:country, :city, :rating, :user_name, :content)
