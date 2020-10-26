@@ -6,6 +6,10 @@ class Review < ApplicationRecord
   # Scopes
   scope :city, -> (city_name) { where("city ilike ?", "%#{city_name}%") }
 
+  scope :country, -> (country_name) {  where("country ilike ?", "%#{country_name}%") }
+
+  scope :search, -> (city_name, country_name) { where("city ilike ? AND country ilike ?", "%#{city_name}%", "%#{country_name}%") }
+
   # Callback
   before_save(:titleize)
 

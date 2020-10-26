@@ -1,11 +1,13 @@
 class ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
     if params[:city]
       city_name = params[:city]
-      @reviews = Review.city(city_name)
     end
+    if params[:country]
+      country_name = params[:country]
+    end
+    @reviews = Review.search(city_name, country_name)
     json_response(@reviews)
   end
 
