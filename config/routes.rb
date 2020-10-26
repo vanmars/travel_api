@@ -4,3 +4,5 @@ Rails.application.routes.draw do
   get 'destination/most_popular', to: 'reviews#most_popular'
   get 'destination/highest_rated', to: 'reviews#highest_rated'
 end
+
+

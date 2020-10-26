@@ -1,4 +1,11 @@
 class ReviewsController < ApplicationController
+  before_action only: [:destroy, :update] do
+    unless params[:user_name] == Review.find(params[:id]).user_name
+      render status: 401, json: {
+        message: "You do not have authorization to edit this review."
+      }
+    end
+  end
 
   def index
     if params[:city]

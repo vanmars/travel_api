@@ -32,9 +32,3 @@ class Review < ApplicationRecord
       self.country = self.country.titleize
     end
 end
-
-# select reviews.city from reviews
-# group by cities
-# group by countries 
-# order by count(*) DESC
-# LIMIT 1;
