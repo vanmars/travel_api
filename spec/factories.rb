@@ -5,6 +5,8 @@ FactoryBot.define do
     country {Faker::Address.country}
     rating {rand(1...6)}
     user_name {Faker::Books::Dune.character}
+
+    
   end
 
   factory(:city_review) do
@@ -12,6 +14,7 @@ FactoryBot.define do
     city {'Virginia Beach'}
     country {Faker::Address.country}
     rating {rand(1...6)}
-    user_name {Faker::Books::Dune.character}
+    user_name {'vstew'}
+    id {rand(1..20)}
   end
 end
