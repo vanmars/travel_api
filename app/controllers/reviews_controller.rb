@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  # before_action :restrict_access
+  
   before_action only: [:destroy, :update] do
     unless params[:user_name] == Review.find(params[:id]).user_name
       render status: 401, json: {
@@ -67,6 +69,17 @@ class ReviewsController < ApplicationController
   end
 
   private
+  # def restrict_access
+  #   api_key = ApiKey.find_by_access_token(params[:access_token])
+  #   head :unauthorized unless api_key
+  # end
+
+  # def restrict_access
+  #   authenticate_or_request_with_http_token do |token, options|
+  #     ApiKey.exists?(access_token: token)
+  #   end
+  # end
+
   def review_params
     params.permit(:country, :city, :rating, :user_name, :content)
   end
