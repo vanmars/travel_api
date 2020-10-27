@@ -6,4 +6,12 @@ FactoryBot.define do
     rating {rand(1...6)}
     user_name {Faker::Books::Dune.character}
   end
+
+  factory(:city_review) do
+    content {Faker::Hacker.say_something_smart}
+    city {'Virginia Beach'}
+    country {Faker::Address.country}
+    rating {rand(1...6)}
+    user_name {Faker::Books::Dune.character}
+  end
 end

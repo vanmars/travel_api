@@ -14,10 +14,7 @@ describe 'get all reviews route', :type => :request do
   it 'returns all reviews' do
     expect(JSON.parse(response.body).size).to eq(20)
   end
-
 end
-
-
 
 # Test the City Search Parameter
 describe 'get all reviews matching city search', :type => :request do
