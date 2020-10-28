@@ -26,6 +26,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faker'
 gem 'knock'
+gem 'kaminari'
 
 group :test do
   gem 'factory_bot_rails'

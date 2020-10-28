@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  # before_action :restrict_access
+
+  before_action :restrict_access
   
   before_action only: [:destroy, :update] do
     unless params[:user_name] == Review.find(params[:id]).user_name
@@ -16,7 +17,7 @@ class ReviewsController < ApplicationController
     if params[:country]
       country_name = params[:country]
     end
-    @reviews = Review.search(city_name, country_name)
+    @reviews = Review.search(city_name, country_name).order(:city).page(params[:page])
     json_response(@reviews)
   end
 
@@ -69,14 +70,15 @@ class ReviewsController < ApplicationController
   end
 
   private
-  # def restrict_access
-  #   api_key = ApiKey.find_by_access_token(params[:access_token])
-  #   head :unauthorized unless api_key
-  # end
+  def restrict_access
+    api_key = ApiKey.find_by_access_token(params[:access_token])
+    head :unauthorized unless api_key
+  end
 
   # def restrict_access
   #   authenticate_or_request_with_http_token do |token, options|
-  #     ApiKey.exists?(access_token: token)
+  #   ActiveSupport::SecurityUtils.secure_compare(token, TOKEN)
+  #     # ApiKey.exists?(access_token: token)
   #   end
   # end
 

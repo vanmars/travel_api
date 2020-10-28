@@ -14,5 +14,4 @@ describe 'put review route', :type => :request do
   it 'updates a review' do
     expect(JSON.parse(response.body)['message']).to eq("Review updated successfully")
   end
-
 end
